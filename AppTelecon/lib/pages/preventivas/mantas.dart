@@ -217,7 +217,7 @@ class _mantasPageState extends State<mantas> {
 
     _formKey.currentState!.save();
 
-    final url = Uri.parse('https://sistema32.cloud/move/Api/VPS/MATAS/matas.php');
+    final url = Uri.parse('API');
     final request = http.MultipartRequest('POST', url);
     final DateFormat formatter = DateFormat('yyyy-MM-dd');
     final DateTime dataSelecionada = formatter.parse(_dataController.text);
