@@ -26,7 +26,7 @@ class _CaixaState extends State<ba_apoio> {
 
   Future<void> carregarRegistros() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/BBK/apoiobabbk.php?user=${widget.loggedInUser}');
+        'API');
     try {
       var response = await http.get(url);
 
