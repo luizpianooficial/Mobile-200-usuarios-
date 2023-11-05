@@ -1,0 +1,300 @@
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:geolocator/geolocator.dart';
+import 'dart:ui' show lerpDouble;
+
+class IdentidadeBaForm extends StatefulWidget {
+  final String ba;
+
+  const IdentidadeBaForm({Key? key, required this.ba});
+
+  @override
+  _IdentidadeBaFormState createState() => _IdentidadeBaFormState();
+}
+
+class _IdentidadeBaFormState extends State<IdentidadeBaForm> {
+  Map<String, dynamic> baData = {
+    'latitude': 0.0,
+    'longitude': 0.0,
+  };
+  bool isLoading = true;
+  bool aceite = false;
+  List<bool> checkBoxValues1 = [false, false, false];
+  List<bool> checkBoxValues2 = [false, false, false];
+  List<bool> checkBoxValues3 = [false, false, false, false, false];
+  String? selectedOption1;
+  String? selectedOption2;
+  String? selectedOption3;
+
+  @override
+  void initState() {
+    super.initState();
+    carregarBaData();
+  }
+
+  Future<void> carregarBaData() async {
+    var url = Uri.parse(
+        'https://sistema32.cloud/move/Api/puxacaixa.php?ba=${widget.ba}');
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      setState(() {
+        baData = json.decode(response.body);
+        isLoading = false;
+      });
+    } else {
+      // Exibir mensagem de erro ou tomar uma ação apropriada
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Identidade BA'),
+      ),
+      body: isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextFormField(
+                      initialValue: baData['ba'],
+                      decoration: InputDecoration(labelText: 'BA'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['ba_comum'],
+                      decoration: InputDecoration(labelText: 'BA Comum'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['uf'],
+                      decoration: InputDecoration(labelText: 'UF'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['localidade'],
+                      decoration: InputDecoration(labelText: 'Localidade'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['estacao'],
+                      decoration: InputDecoration(labelText: 'Estação'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['endereco'],
+                      decoration: InputDecoration(labelText: 'Endereço'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['celula'],
+                      decoration: InputDecoration(labelText: 'Célula'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['cdoe'],
+                      decoration: InputDecoration(labelText: 'CDOE'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['data_abertura'],
+                      decoration:
+                          InputDecoration(labelText: 'Data de Abertura'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['data_vencimento'],
+                      decoration:
+                          InputDecoration(labelText: 'Data de Vencimento'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['tipo'],
+                      decoration: InputDecoration(labelText: 'Tipo'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['id_usu'],
+                      decoration: InputDecoration(labelText: 'ID do Usuário'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['data_despacho'],
+                      decoration:
+                          InputDecoration(labelText: 'Data de Despacho'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['status'],
+                      decoration: InputDecoration(labelText: 'Status'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['obs_cl'],
+                      maxLines: 5, // Define o número de linhas
+                      decoration: InputDecoration(labelText: 'Observações'),
+                    ),
+                    TextFormField(
+                      initialValue: baData['just_paralizacao'],
+                      decoration: InputDecoration(
+                        labelText: 'Justificativa de Paralização',
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        pegarPosicao();
+                        setState(() {
+                          aceite = true;
+                        });
+                      },
+                      child: Text('Visualizar'),
+                    ),
+                    if (aceite)
+                      Container(
+                        color: Colors.grey[200],
+                        padding: EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'VOCÊ ESTÁ:',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            DropdownButton<String>(
+                              value: selectedOption1,
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  selectedOption1 = newValue!;
+                                });
+                              },
+                              items: [
+                                DropdownMenuItem(
+                                  value: 'No local?',
+                                  child: Text('No local?'),
+                                ),
+                                DropdownMenuItem(
+                                  value:
+                                      'Deslocamento para o ponto de rompimento?',
+                                  child: Text(
+                                      'Deslocamento para o ponto de rompimento?'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'Deslocamento para a estação?',
+                                  child: Text('Deslocamento para a estação?'),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                            Text(
+                              'TEMPO DE DESLOCAMENTO',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            DropdownButton<String>(
+                              value: selectedOption3,
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  selectedOption3 = newValue!;
+                                });
+                              },
+                              items: [
+                                DropdownMenuItem(
+                                  value: 'Já estou no local!',
+                                  child: Text('Já estou no local!'),
+                                ),
+                                DropdownMenuItem(
+                                  value: '00:30 minutos',
+                                  child: Text('00:30 minutos'),
+                                ),
+                                DropdownMenuItem(
+                                  value: '01:00 Hora',
+                                  child: Text('01:00 Hora'),
+                                ),
+                                DropdownMenuItem(
+                                  value: '01:30 Hora',
+                                  child: Text('01:30 Hora'),
+                                ),
+                              ],
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                pegarPosicao();
+                                setState(() {
+                                  aceite = true;
+                                });
+                                await atualizarDados();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.red,
+                                onPrimary: Colors.white,
+                              ),
+                              child: Text('Aceite'),
+                            )
+                          ],
+                        ),
+                      ),
+                    SizedBox(height: 16),
+                  ],
+                ),
+              ),
+            ),
+    );
+  }
+
+  Future<void> pegarPosicao() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      permission = await Geolocator.requestPermission();
+      if (permission != LocationPermission.whileInUse &&
+          permission != LocationPermission.always) {
+        print('Permissão de localização não concedida.');
+        return;
+      }
+    }
+
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.best,
+    );
+
+    double latitude = position.latitude;
+    double longitude = position.longitude;
+    print('Latitude: $latitude');
+    print('Longitude: $longitude');
+
+    setState(() {
+      baData['latitude'] = latitude.toString();
+      baData['longitude'] = longitude.toString();
+    });
+  }
+
+  Future<void> atualizarDados() async {
+    String latitude = baData['latitude'];
+    String longitude = baData['longitude'];
+
+    Map<String, dynamic> dadosAtualizados = {
+      'ba': widget.ba,
+      'latitude': latitude,
+      'longitude': longitude,
+    };
+
+    var url = Uri.parse('https://sistema32.cloud/move/Api/geo.php');
+
+    try {
+      var response = await http.post(
+        url,
+        body: dadosAtualizados,
+      );
+
+      if (response.statusCode == 200) {
+        print('Latitude and longitude updated in the database successfully!');
+      } else {
+        print(
+            'Error updating latitude and longitude in the database: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('An error occurred while updating latitude and longitude: $error');
+    }
+  }
+}

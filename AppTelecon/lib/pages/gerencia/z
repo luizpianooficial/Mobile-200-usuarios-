@@ -1,0 +1,119 @@
+import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyPage(),
+    );
+  }
+}
+
+class MyPage extends StatefulWidget {
+  @override
+  _MyPageState createState() => _MyPageState();
+}
+
+class _MyPageState extends State<MyPage> {
+  Future<List<Map<String, dynamic>>>? _fetchCoordenadores;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchCoordenadores = fetchCoordenadores();
+  }
+
+  Future<List<Map<String, dynamic>>> fetchCoordenadores() async {
+    try {
+      final response = await http.get(Uri.parse(
+          'https://sistema32.cloud//move/Api/gerencia_flutter/tempo_gestor_ba97.php'));
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        List<Map<String, dynamic>> coordenadores =
+            List<Map<String, dynamic>>.from(data);
+        return coordenadores;
+      } else {
+        throw Exception('Falha ao carregar os dados dos coordenadores');
+      }
+    } catch (e) {
+      print('Erro ao buscar dados: $e');
+      return []; // Retorna uma lista vazia em caso de erro.
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Resultados dos Coordenadores'),
+      ),
+      body: FutureBuilder<List<Map<String, dynamic>>>(
+        future: _fetchCoordenadores, // Use a variável _fetchCoordenadores
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('Erro ao carregar os dados');
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Text('Nenhum dado disponível');
+          } else {
+            List<Map<String, dynamic>> coordenadores = snapshot
+                .data!; // Use o operador "!" para indicar que não é nulo
+
+            return SingleChildScrollView(
+              child: PaginatedDataTable(
+                header: Text('Coordenadores'),
+                columns: [
+                  DataColumn(label: Text('Nome Gestor')),
+                  DataColumn(label: Text('Quantidade de 97')),
+                  DataColumn(label: Text('Tempo Médio')),
+                ],
+                source: MyDataTableSource(coordenadores),
+              ),
+            );
+          }
+        },
+      ),
+    );
+  }
+}
+
+class MyDataTableSource extends DataTableSource {
+  final List<Map<String, dynamic>> coordenadores;
+
+  MyDataTableSource(this.coordenadores);
+
+  @override
+  DataRow getRow(int index) {
+    final coordenador = coordenadores[index];
+    final nomeGestor = coordenador['nome_gestor'];
+    final quantidade97 = coordenador['tipo'];
+    final dataAtribuicaoStr = coordenador['data_atribuicao'] as String?;
+    final dataEncerramentoStr = coordenador['data_encerramento'] as String?;
+
+    final dataEncerramento = dataEncerramentoStr != null
+        ? DateTime.parse(dataEncerramentoStr)
+        : DateTime.now();
+    // final tempoMedio = dataEncerramento.difference(dataAtribuicao).inDays;
+
+    return DataRow(cells: [
+      DataCell(Text(nomeGestor)),
+      DataCell(Text(quantidade97.toString())),
+      DataCell(Text(tempoMedio.toString())),
+    ]);
+  }
+
+  @override
+  int get rowCount => coordenadores.length;
+
+  @override
+  bool get isRowCountApproximate => false;
+
+  @override
+  int get selectedRowCount => 0;
+}
