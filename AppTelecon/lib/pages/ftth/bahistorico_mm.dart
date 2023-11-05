@@ -36,7 +36,7 @@ class _IdentidadeBaFormState extends State<IdentidadeBaForms> {
   }
 
   Future<void> carregarBaData() async {
-  var url = Uri.parse('https://sistema32.cloud/move/Api/VPS/FTTH/puxacaixa.php?ba=${widget.ba}');
+  var url = Uri.parse('API');
   var response = await http.get(url);
 
   if (response.statusCode == 200) {
@@ -63,7 +63,7 @@ class _IdentidadeBaFormState extends State<IdentidadeBaForms> {
 
 
  Future<List<String>> buscarDescricao(String ba) async {
-  var url = Uri.parse('https://sistema32.cloud/move/Api/VPS/FTTH/historico/material.php?ba=$ba');
+  var url = Uri.parse('API');
 
   try {
     var response = await http.get(url);
@@ -277,7 +277,7 @@ class _IdentidadeBaFormState extends State<IdentidadeBaForms> {
       'checkBox2': selectedOption3,
     };
 
-    var url = Uri.parse('https://sistema32.cloud/move/Api/VPS/geo.php');
+    var url = Uri.parse('API');
 
     try {
       var response = await http.post(
