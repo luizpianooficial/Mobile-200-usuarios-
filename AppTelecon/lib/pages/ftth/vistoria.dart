@@ -34,9 +34,8 @@ class _vistoria_baState extends State<vistoria_ba> {
 
   Future<void> carregarRegistros() async {
     var url = Uri.parse(
-        // 'https://sistema32.cloud/move/Api/VPS/FTTH/vistoria.php?user=${widget.loggedInUser}');
-        // 'https://sistema32.cloud/move/Api/FTTH/vistoria.php?user=${widget.loggedInUser}');
-        'https://sistema32.cloud/move/Api/FTTH/vistoria.php?user=${widget.loggedInUser}');
+        
+        'API');
     try {
       var response = await http.get(url);
 
@@ -72,8 +71,8 @@ class _vistoria_baState extends State<vistoria_ba> {
 
   Future<void> carregarNomeDoUsuario() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/pos_ba/pegarnome.php?id=${widget.loggedInUser}');
-        //  'https://sistema32.cloud/move/Api/pos_ba/pegarnome.php?id=${widget.loggedInUser}');
+        'API');
+       
     try {
       var response = await http.get(url);
 
