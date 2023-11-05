@@ -31,8 +31,8 @@ class _CaixaState extends State<historicoa> {
 
   Future<void> carregarRegistros() async {
     var url = Uri.parse(
-      // 'https://sistema32.cloud/move/Api/listacaixa.php?user=${widget.loggedInUser}');
-        'https://sistema32.cloud/move/Api/VPS/FTTH/historico/ba.php?user=${widget.loggedInUser}');
+    
+        'API');
     try {
       var response = await http.get(url);
 
