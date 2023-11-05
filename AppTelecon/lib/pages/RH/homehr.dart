@@ -30,7 +30,7 @@ class _homerhState extends State<homerh> {
 
   Future<void> carregarNomeDoUsuario() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/RH/adm.php?id=${widget.loggedInUser}');
+        'API');
     try {
       var response = await http.get(url);
 
