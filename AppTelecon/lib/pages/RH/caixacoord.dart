@@ -29,8 +29,8 @@ class _CaixaState extends State<caixacoord> {
 
   Future<void> carregarRegistros() async {
     var url = Uri.parse(
-      // 'https://sistema32.cloud/move/Api/listacaixa.php?user=${widget.loggedInUser}');
-        'https://sistema32.cloud/move/Api/VPS/PONTO/caixa_coord.php?id_coordenador=${widget.loggedInUser}');
+    
+        'API');
     try {
       var response = await http.get(url);
 
