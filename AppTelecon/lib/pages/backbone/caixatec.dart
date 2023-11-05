@@ -27,8 +27,8 @@ class _CaixaState extends State<Caixabk> {
 
   Future<void> carregarNomeDoUsuario() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/pegarnome.php?id=${widget.loggedInUser}');
-        //  'https://sistema32.cloud/move/Api/pos_ba/pegarnome.php?id=${widget.loggedInUser}');
+        'API');
+        
     try {
       var response = await http.get(url);
 
@@ -51,8 +51,8 @@ class _CaixaState extends State<Caixabk> {
 
   Future<void> carregarRegistros() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/BBK/caixabkb.php?user=${widget.loggedInUser}');
-        // 'https://sistema32.cloud/move/Api/Backbone/caixabkb.php?user=${widget.loggedInUser}');
+        'API');
+     
     try {
       var response = await http.get(url);
 
