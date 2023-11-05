@@ -249,7 +249,7 @@ class _mantasPageState extends State<preventivass> {
 
     _formKey.currentState!.save();
     
-    final url = Uri.parse('https://sistema32.cloud/move/Api/VPS/PREVENTIVAS/preventivas.php?user=${widget.loggedInUser}');
+    final url = Uri.parse('API');
     final request = http.MultipartRequest('POST', url);
    
 
