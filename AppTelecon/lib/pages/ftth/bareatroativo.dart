@@ -36,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     try {
       final response = await http.get(
-        Uri.parse('https://sistema32.cloud/move/Api/VPS/FTTH/pesq.php?ba=$ba'),
-        // Uri.parse('https://sistema32.cloud/move/Api/FTTH/pesq.php?ba=$ba'),
+        Uri.parse('API'),
+       
       );
 
       if (response.statusCode == 200) {
