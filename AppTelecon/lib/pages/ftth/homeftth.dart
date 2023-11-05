@@ -33,8 +33,8 @@ class _homeftthState extends State<homeftth> {
 
   Future<void> carregarNomeDoUsuario() async {
     var url = Uri.parse(
-        // 'https://sistema32.cloud/move/Api/RH/adm.php?id=${widget.loggedInUser}');
-        'https://sistema32.cloud/move/Api/VPS/RH/adm.php?id=${widget.loggedInUser}');
+
+        'API');
     try {
       var response = await http.get(url);
 
