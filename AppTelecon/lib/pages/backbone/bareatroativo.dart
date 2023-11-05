@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       final response = await http.get(
         Uri.parse(
-            'https://sistema32.cloud/move/Api/VPS/BBK/pesq_bbk.php?ba=$ba'),
+            API'),
       );
 
       if (response.statusCode == 200) {
