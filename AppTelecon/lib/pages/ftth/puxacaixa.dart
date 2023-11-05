@@ -37,8 +37,8 @@ class _IdentidadeBaFormState extends State<IdentidadeBaForm> {
 
   Future<void> carregarBaData() async {
     var url = Uri.parse(
-        // 'https://sistema32.cloud/move/Api/puxacaixa.php?ba=${widget.ba}');
-        'https://sistema32.cloud/move/Api/VPS/FTTH/puxacaixa.php?ba=${widget.ba}');
+      
+        'API');
     var response = await http.get(url);
 
     if (response.statusCode == 200) {
