@@ -42,7 +42,7 @@ class _baixaPageState extends State<baixa> {
   }
 
   Future<void> _enviarDadosParaBanco() async {
-    final url = Uri.parse('https://sistema32.cloud/move/Api/VPS/BBK/baixa.php');
+    final url = Uri.parse('API');
     try {
       for (var formData in formDataList) {
         final response = await http.post(
@@ -73,7 +73,7 @@ class _baixaPageState extends State<baixa> {
 
   // Função para carregar os materiais da API
   Future<void> carregarMateriais() async {
-    final url = Uri.parse('https://sistema32.cloud/move/Api/baixa/baixabk.php');
+    final url = Uri.parse('API');
 
     try {
       final response = await http.get(url);
@@ -120,7 +120,7 @@ class _baixaPageState extends State<baixa> {
 }
 
  Future<void> _enviarCoordenadasParaBanco(double latitude, double longitude) async {
-  final url = Uri.parse('https://sistema32.cloud/move/Api/VPS/BBK/geo.encerramento.php');
+  final url = Uri.parse('API');
 
   try {
     final response = await http.post(
