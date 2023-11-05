@@ -38,7 +38,7 @@ class _IdentidadeBaFormState extends State<analisecoord> {
 
   Future<void> carregarBaData() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/PONTO/justificativacoord.php?id_coordenador=${widget.loggedInUser}');
+        'API');
     var response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -56,7 +56,7 @@ class _IdentidadeBaFormState extends State<analisecoord> {
 
   // Construa a URL para enviar os dados e as imagens
   var updateUrl =
-      Uri.parse('https://sistema32.cloud/move/Api/VPS/PONTO/analisecoord.php');
+      Uri.parse('API');
 
   var request = http.MultipartRequest('POST', updateUrl);
 
