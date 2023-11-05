@@ -25,8 +25,8 @@ class _pesquisaState extends State<pesquisa> {
 
   Future<void> carregarRegistros() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/BBK/lista_ba_andamento.php?user=${widget.loggedInUser}');
-        // 'https://sistema32.cloud/move/Api/listacaixa(1).php?user=${widget.loggedInUser}');
+        'API');
+       
     try {
       var response = await http.get(url);
 
