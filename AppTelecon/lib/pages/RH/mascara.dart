@@ -35,7 +35,7 @@ class _IdentidadeBaFormState extends State<nomess> {
 
   Future<void> carregarBaData() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/RH/puxasolicitacao.php?nu_solicitacao=${widget.nu_solicitacao}');
+        'API');
     var response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -152,7 +152,7 @@ class _IdentidadeBaFormState extends State<nomess> {
 
                                     // Chame a função para atualizar o status para "NÃO AUTORIZADO" aqui
                                     var url = Uri.parse(
-                                        'https://sistema32.cloud/move/Api/RH/reprovar.php');
+                                        'API');
                                     var response = await http.post(url, body: {
                                       'id':
                                           baData['id'], // Use o ID do registro
@@ -199,7 +199,7 @@ class _IdentidadeBaFormState extends State<nomess> {
 
                                     // Chame a função para atualizar o status para "NÃO AUTORIZADO" aqui
                                     var url = Uri.parse(
-                                        'https://sistema32.cloud/move/Api/RH/status.php');
+                                        'API');
                                     var response = await http.post(url, body: {
                                       'id':
                                           baData['id'], // Use o ID do registro
