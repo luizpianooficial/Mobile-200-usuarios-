@@ -26,7 +26,7 @@ class _HistoricoState extends State<Historico> {
 
   Future<void> carregarRegistros() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/RH/puxa_solic_tec.php?user=${widget.loggedInUser}');
+        'API');
     try {
       var response = await http.get(url);
 
