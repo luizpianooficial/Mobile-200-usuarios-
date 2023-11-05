@@ -42,7 +42,7 @@ class _baixaPageState extends State<baixa> {
   }
 
   Future<void> _enviarDadosParaBanco() async {
-    final url = Uri.parse('https://sistema32.cloud/move/Api/VPS/FTTH/baixa.php');
+    final url = Uri.parse('API');
     // final url = Uri.parse('https://sistema32.cloud/move/Api/baixa.php');
     try {
       for (var formData in formDataList) {
@@ -74,8 +74,8 @@ class _baixaPageState extends State<baixa> {
 
   // Função para carregar os materiais da API
   Future<void> carregarMateriais() async {
-    final url = Uri.parse('https://sistema32.cloud/move/Api/VPS/FTTH/baixa/baixa.php');
-    // final url = Uri.parse('https://sistema32.cloud/move/Api/baixa/baixa.php');
+    final url = Uri.parse('API');
+
 
     try {
       final response = await http.get(url);
@@ -103,7 +103,7 @@ class _baixaPageState extends State<baixa> {
   }
 
   Future<void> _enviarCoordenadasParaBanco(double latitude, double longitude) async {
-  final url = Uri.parse('https://sistema32.cloud/move/Api/VPS/FTTH/geo_encerramento.php');
+  final url = Uri.parse('API');
 
   try {
     final response = await http.post(
