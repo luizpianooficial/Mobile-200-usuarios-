@@ -37,8 +37,7 @@ class _IdentidadeBaFormState extends State<vistoriaposba> {
 
   Future<void> carregarBaData() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/FTTH/puxacaixa.php?ba=${widget.ba}');
-        // 'https://sistema32.cloud/move/Api/puxacaixa.php?ba=${widget.ba}');
+        'API'
     var response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -230,8 +229,8 @@ class _IdentidadeBaFormState extends State<vistoriaposba> {
       'obs_ba_apoio': obs_ba_apoio,
     };
 
-    var url = Uri.parse('https://sistema32.cloud/move/Api/VPS/FTTH/pos_ba.php');
-    // var url = Uri.parse('https://sistema32.cloud/move/Api/pos_ba/pos_ba.php');
+    var url = Uri.parse('API');
+   
 
     try {
       var response = await http.post(
