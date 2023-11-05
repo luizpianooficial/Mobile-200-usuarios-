@@ -41,7 +41,7 @@ class _IdentidadeBaFormState extends State<IdentidadeBaFormhc> {
 
   Future<void> carregarBaData() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/HC/puxacaixa.php?sa=${widget.sa}');
+        'API');
     var response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -92,7 +92,7 @@ class _IdentidadeBaFormState extends State<IdentidadeBaFormhc> {
       'obs_tec': obsTec,
     };
 
-    var url = Uri.parse('https://sistema32.cloud/move/Api/VPS/RH/updatehv.php');
+    var url = Uri.parse('API');
 
     try {
       var response = await http.post(
@@ -116,7 +116,7 @@ class _IdentidadeBaFormState extends State<IdentidadeBaFormhc> {
       'id_usu': idUsu,
     };
 
-    var url = Uri.parse('https://sistema32.cloud/move/Api/VPS/HC/update.php');
+    var url = Uri.parse('API');
 
     try {
       var response = await http.post(
@@ -135,8 +135,8 @@ class _IdentidadeBaFormState extends State<IdentidadeBaFormhc> {
   }
 
   Future<void> sendMessageToTelegram(String message) async {
-    final String botToken = '6433723961:AAEhEN9RAKGI0yPqdTyT7-rUs2RTxAMrTnI';
-    final String chatId = '-1001613780681'; // The chat ID of your group
+    final String botToken = 'API';
+    final String chatId = 'API'; // The chat ID of your group
 
     final String apiUrl = 'https://api.telegram.org/bot$botToken/sendMessage';
 
@@ -178,7 +178,7 @@ class _IdentidadeBaFormState extends State<IdentidadeBaFormhc> {
   }
 
   Future<void> sendImagesToServer() async {
-    String url = 'https://sistema32.cloud/move/Api/VPS/HC/foto.php';
+    String url = 'API';
 
     // Crie um objeto FormData para enviar as imagens como formulário multipart
     var formData = http.MultipartRequest('POST', Uri.parse(url));
