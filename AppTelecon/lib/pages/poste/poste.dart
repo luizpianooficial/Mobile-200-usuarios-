@@ -142,7 +142,7 @@ class _FormularioPageState extends State<FormularioPage> {
 
     _formKey.currentState!.save();
 
-    final url = Uri.parse('https://sistema32.cloud/poste/API/imageupload.php');
+    final url = Uri.parse('API');
     final request = http.MultipartRequest('POST', url);
     final DateFormat formatter = DateFormat('yyyy-MM-dd');
     final DateTime dataSelecionada = formatter.parse(_dataController.text);
