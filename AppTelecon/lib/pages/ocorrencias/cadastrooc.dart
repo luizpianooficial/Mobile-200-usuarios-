@@ -225,7 +225,7 @@ class _CadastroOCState extends State<CadastroOC> {
     _formKey.currentState!.save();
 
     final url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/OCORRENCIA/cadastro.php');
+        'API');
     final request = http.MultipartRequest('POST', url);
     final DateFormat formatter = DateFormat('yyyy-MM-dd');
     final DateTime dataSelecionada = formatter.parse(_dataController.text);
