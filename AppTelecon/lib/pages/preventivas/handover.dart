@@ -23,7 +23,7 @@ class _HandoverState extends State<Handover> {
   List<XFile>? selectedImages;
 
   Future<void> uploadImages(List<XFile> images) async {
-  final url = 'https://sistema32.cloud/move/Api/VPS/PREVENTIVAS/handover.php';
+  final url = 'API';
   final dio = Dio();
 
   for (var item in checklistItems) {
