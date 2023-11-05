@@ -44,7 +44,7 @@ class _CaixaState extends State<ga_tempos> with SingleTickerProviderStateMixin {
 
   Future<void> carregaracesso() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/RH/adm.php?id=${widget.loggedInUser}');
+        'API');
     try {
       var response = await http.get(url);
 
@@ -67,7 +67,7 @@ class _CaixaState extends State<ga_tempos> with SingleTickerProviderStateMixin {
 
   Future<void> carregarNomeDoUsuario() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/RH/puxanome.php?id=${widget.loggedInUser}');
+        'API');
     try {
       var response = await http.get(url);
 
@@ -91,7 +91,7 @@ class _CaixaState extends State<ga_tempos> with SingleTickerProviderStateMixin {
   Future<void> carregarRegistros() async {
     if (nomecoordenador != null) {
       var url = Uri.parse(
-          'https://sistema32.cloud/move/Api/teste/teste.php?user=${widget.loggedInUser}&$nomecoordenador');
+          'API');
       try {
         var response = await http.get(url);
 
