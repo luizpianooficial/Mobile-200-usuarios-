@@ -27,8 +27,8 @@ class _encerramentoState extends State<encerramento> {
 
   Future<void> carregarRegistros() async {
     var url = Uri.parse(
-        // 'https://sistema32.cloud/move/Api/encerramento.php?user=${widget.loggedInUser}');
-        'https://sistema32.cloud/move/Api/VPS/FTTH/encerrar.php?user=${widget.loggedInUser}');
+       
+        'API');
     try {
       var response = await http.get(url);
 
