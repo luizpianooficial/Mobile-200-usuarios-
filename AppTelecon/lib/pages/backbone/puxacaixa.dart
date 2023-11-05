@@ -36,7 +36,7 @@ class _IdentidadeBaFormState extends State<IdentidadeBaFormbk> {
 
   Future<void> carregarBaData() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/BBK/puxacaixa.php?ba=${widget.ba}');
+        'API');
     var response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -342,7 +342,7 @@ class _IdentidadeBaFormState extends State<IdentidadeBaFormbk> {
       'checkBox2': selectedOption3,
     };
 
-    var url = Uri.parse('https://sistema32.cloud/move/Api/VPS/BBK/geo.php');
+    var url = Uri.parse('API');
 
     try {
       var response = await http.post(
