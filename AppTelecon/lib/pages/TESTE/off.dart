@@ -89,7 +89,7 @@ class _FormularioPageState extends State<FormularioPage> {
 
   Future<void> _sendToAPI(String nome, String tipo, String bairro, String rua,
       String quantidade) async {
-    String url = 'https://sistema32.cloud/move/Api/teste/testeof.php';
+    String url = 'API';
 
     try {
       // Send the data to the API using the POST method.
