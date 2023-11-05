@@ -45,8 +45,7 @@ class _MascaraDeEncerramentoPageState extends State<MascaraDeEncerramentoPage> {
   }
 
   Future<void> _buscarCausas() async {
-  // String apiUrl = 'https://sistema32.cloud/move/Api/causa.php';
-  String apiUrl = 'https://sistema32.cloud/move/Api/VPS/causa.php';
+  String apiUrl = 'API';
 
   try {
     final response = await http.get(Uri.parse(apiUrl));
@@ -78,8 +77,8 @@ class _MascaraDeEncerramentoPageState extends State<MascaraDeEncerramentoPage> {
 
   Future<void> _buscarSubCausas(String causaSelecionada) async {
     String apiUrl =
-        'https://sistema32.cloud/move/Api/VPS/subcausa.php?causa=$causaSelecionada';
-        // 'https://sistema32.cloud/move/Api/subcausa.php?causa=$causaSelecionada';
+        'API';
+       
 
     try {
       final response = await http.get(Uri.parse(apiUrl));
