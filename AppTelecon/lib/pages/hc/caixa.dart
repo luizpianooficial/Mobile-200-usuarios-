@@ -27,7 +27,7 @@ class _CaixaState extends State<Caixahc> {
 
   Future<void> carregarRegistros() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/HC/listacaixa.php?user=${widget.loggedInUser}');
+        'API');
     try {
       var response = await http.get(url);
 
