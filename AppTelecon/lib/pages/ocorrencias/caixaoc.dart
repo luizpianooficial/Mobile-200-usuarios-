@@ -25,7 +25,7 @@ class _CaixaState extends State<Caixaoc> {
 
   Future<void> carregarRegistros() async {
     var url =
-        Uri.parse('https://sistema32.cloud/move/Api/VPS/OCORRENCIA/ocorrencia.php');
+        Uri.parse('API');
     try {
       var response = await http.get(url);
 
