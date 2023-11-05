@@ -40,7 +40,7 @@ class _HoraExtraFormState extends State<HoraExtraForm> {
 
   Future<void> carregarNomeDoUsuario() async {
     var url = Uri.parse(
-        'https://sistema32.cloud/move/Api/VPS/RH/puxanome.php?id=${widget.loggedInUser}');
+        'API');
     try {
       var response = await http.get(url);
 
@@ -78,7 +78,7 @@ class _HoraExtraFormState extends State<HoraExtraForm> {
 
   Future<void> _cadastrarHoraExtra() async {
     if (selectedMotivo != null) {
-      final url = 'https://sistema32.cloud/move/Api/VPS/RH/hora.php';
+      final url = 'API';
 
       final response = await http.post(
         Uri.parse(url),
